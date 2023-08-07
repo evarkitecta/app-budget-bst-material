@@ -9,11 +9,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { PanelComponent } from './panel/panel.component';
+import { CalculateBudgetService } from './shared/services/calculate-budget.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PanelComponent
   ],
   imports: [
     AppRoutingModule,
@@ -24,7 +27,9 @@ import { HomeComponent } from './home/home.component';
     NgbModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    CalculateBudgetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

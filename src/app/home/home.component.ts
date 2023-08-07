@@ -1,51 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
+import { CalculateBudgetService } from '../shared/services/calculate-budget.service';
 
-export interface Task {
-  name: string;
-  completed: boolean;
-  color: ThemePalette;
-  subtasks?: Task[];
-}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   title = '¿Qué quieres hacer?';
-  public totalPrice: number = 0;
 
-  //*Primera opción para crear un formulario:
-  // public budgetForm = new FormGroup({
-  //   webChecked: new FormControl(false),
-  //   seoChecked: new FormControl(false),
-  //   googleChecked: new FormControl(false),
-  // })
-  // *Segunda opción para crear un formulario:
+  public generalPrice: number = 0;
+  public webPanelPrice: number = 0;
+  public totalBudgetPrice: number = 0;
+
   budgetForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private calculateService: CalculateBudgetService) {
     this.budgetForm = this.formBuilder.group({
       webChecked: [false],
       seoChecked: [false],
       googleAdsChecked: [false],
     });
   }
+  ngOnInit(): void {
 
+  }
 
-  addPrice(): void {
-    this.totalPrice = 0;
+  addPrice(): number {
+    this.generalPrice = 0;
 
     if (this.budgetForm.value.webChecked) {
-      this.totalPrice += 500;
+      this.generalPrice += this.calculateService.priceWeb;
     }
     if (this.budgetForm.value.seoChecked) {
-      this.totalPrice += 300;
+      this.generalPrice += this.calculateService.priceSEO;
     }
     if (this.budgetForm.value.googleAdsChecked) {
-      this.totalPrice += 200;
+      this.generalPrice += this.calculateService.priceGoogleAds;
     }
+    return this.generalPrice
+  }
+
+  receivePanelPrice(price: number): void {
+    this.webPanelPrice = price;
+    this.calculateBudget()
+  }
+
+  calculateBudget(): void {
+    this.totalBudgetPrice = this.addPrice() + this.webPanelPrice
   }
 }
