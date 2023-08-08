@@ -16,10 +16,13 @@ export class PanelComponent implements OnInit {
   constructor(private fb: FormBuilder, private webPanelService: CalculateBudgetService) {
     //Formulario
     this.webPanelForm = this.fb.group({
-      numPages: [0],
-      numLanguages: [0],
+      numPages: [1],
+      numLanguages: [1],
     });
-
+    this.panelPrice();
+    this.webPanelForm.valueChanges.subscribe(() => {
+      this.panelPrice();
+    });
     // this.webPanelForm.valueChanges.subscribe(() => {
     //   const webPanelPrice = this.webPanelService.calculateWebPanel(this.webPanelForm.value.numPages, this.webPanelForm.value.numLanguages);
     //   this.addPanelPrice.emit(webPanelPrice);
@@ -41,10 +44,43 @@ export class PanelComponent implements OnInit {
     // console.log(webPanelPrice)
   }
   panelPrice() {
-    const numPages: number = this.webPanelForm.get("numPages")?.value;
-    const numLanguages: number = this.webPanelForm.get("numLanguages")?.value;
-    const webPanelPrice = this.webPanelService.calculateWebPanel(numPages, numLanguages);
+    let numPages: number = this.webPanelForm.get("numPages")?.value;
+    let numLanguages: number = this.webPanelForm.get("numLanguages")?.value;
+    let webPanelPrice = this.webPanelService.calculateWebPanel(numPages, numLanguages);
     this.addPanelPrice.emit(webPanelPrice);
+  }
+
+  // Exercici 3
+  increaseNumPages() {
+    let numPages = this.webPanelForm.get('numPages')?.value;
+    this.webPanelForm.get('numPages')?.setValue(++numPages);
+    this.panelPrice();
+  }
+
+  reduceNumPages() {
+    let numPages = this.webPanelForm.get('numPages')?.value;
+
+    if (numPages > 1) {
+      this.webPanelForm.get('numPages')?.setValue(--numPages)
+
+    };
+    this.panelPrice();
+  }
+
+
+  increaseNumLanguages() {
+    let numLanguages = this.webPanelForm.get('numLanguages')?.value;
+    this.webPanelForm.get('numLanguages')?.setValue(++numLanguages);
+    this.panelPrice();
+  }
+
+
+  reduceNumLanguages() {
+    let numLanguages = this.webPanelForm.get('numLanguages')?.value;
+    if (numLanguages > 1) {
+      this.webPanelForm.get('numLanguages')?.setValue(--numLanguages)
+    };
+    this.panelPrice();
   }
 
 }

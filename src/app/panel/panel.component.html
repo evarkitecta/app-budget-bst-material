@@ -19,15 +19,17 @@
 
 <div class="m-3 p-2 border rounded-2 border-3 border-dark text-center">
   <form [formGroup]="webPanelForm">
-    <div>
+    <div class=" form-group">
       <label for="numPages" class="col-form-label me-2">Número de páginas: </label>
-      <!-- Me da error al añadir: (change)="calculateBudget(webPanelPrice)" -->
-      <input type="number" formControlName="numPages" (change)="panelPrice()">
+      <button type="button" class=" rounded btn btn-outline-secondary" (click)="reduceNumPages()"> - </button>
+      <input type="number" class="text-center" formControlName="numPages" (change)="panelPrice()">
+      <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumPages()"> + </button>
     </div>
-    <div>
+    <div class="form-group">
       <label for="numLanguages" class="col-form-label me-2">Número de idiomas: </label>
-      <!-- Me da error al añadir: (change)="calculateBudget(webPanelPrice)" -->
-      <input type="number" formControlName="numLanguages" (change)="panelPrice()">
+      <button type="button" class=" rounded btn btn-outline-secondary" (click)="reduceNumLanguages()"> - </button>
+      <input type="number" class="text-center" formControlName="numLanguages" (change)="panelPrice()">
+      <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumLanguages()"> + </button>
     </div>
   </form>
   <!-- <button (click)="calculatePrice()">Calcular precio</button> -->
