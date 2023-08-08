@@ -10,26 +10,35 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
+import { WellcomeComponent } from './wellcome/wellcome.component';
+
 import { CalculateBudgetService } from './shared/services/calculate-budget.service';
+import { ModalComponent } from './modal/modal.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PanelComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MaterialModule,
-    NgbModule,
-    ReactiveFormsModule,
+    ModalComponent,
+    PanelComponent,
+    WellcomeComponent
   ],
   providers: [
     CalculateBudgetService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    FormsModule,
+    MaterialModule,
+    NgbModule,
+    ReactiveFormsModule,
+
+  ]
 })
 export class AppModule { }

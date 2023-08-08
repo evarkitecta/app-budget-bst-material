@@ -22,8 +22,12 @@
     <div class=" form-group">
       <label for="numPages" class="col-form-label me-2">Número de páginas: </label>
       <button type="button" class=" rounded btn btn-outline-secondary" (click)="reduceNumPages()"> - </button>
-      <input type="number" class="text-center" formControlName="numPages" (change)="panelPrice()">
+      <input type="number" class="text-center" formControlName="numPages" placeholder="Introduce el número de páginas"
+        (change)="panelPrice()">
       <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumPages()"> + </button>
+      <!-- <button type="button" (click)="openWindow1()" class="p-0 m-0 border-0 align-bottom bg-white rounded ms-2"><i
+        class="fa-sharp fa-solid fa-circle-info text-muted"></i></button> -->
+      <app-modal></app-modal>
     </div>
     <div class="form-group">
       <label for="numLanguages" class="col-form-label me-2">Número de idiomas: </label>
@@ -31,6 +35,8 @@
       <input type="number" class="text-center" formControlName="numLanguages" (change)="panelPrice()">
       <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumLanguages()"> + </button>
     </div>
+    <!-- <button type="button" (click)="openWindow2()" class="p-0 m-0 border-0 align-bottom bg-white rounded ms-2"><i
+      class="fa-sharp fa-solid fa-circle-info text-muted"></i></button> -->
   </form>
   <!-- <button (click)="calculatePrice()">Calcular precio</button> -->
 </div>

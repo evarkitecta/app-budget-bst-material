@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CalculateBudgetService } from '../shared/services/calculate-budget.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-panel',
@@ -20,9 +21,9 @@ export class PanelComponent implements OnInit {
       numLanguages: [1],
     });
     this.panelPrice();
-    this.webPanelForm.valueChanges.subscribe(() => {
-      this.panelPrice();
-    });
+    // this.webPanelForm.valueChanges.subscribe(() => {
+    //   this.panelPrice();
+    // });
     // this.webPanelForm.valueChanges.subscribe(() => {
     //   const webPanelPrice = this.webPanelService.calculateWebPanel(this.webPanelForm.value.numPages, this.webPanelForm.value.numLanguages);
     //   this.addPanelPrice.emit(webPanelPrice);
@@ -30,23 +31,16 @@ export class PanelComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    // Captar valores del formulario para enviar a calcular al servicio
-    // const numPages: number = this.webPanelForm.value.numPages;
-    // const numLanguages: number = this.webPanelForm.value.numLanguages;
 
-    // this.webPanelPrice = this.webPanelService.calculateWebPanel(numPages, numLanguages);
-    // console.log(this.webPanelPrice)
-    // const numPages: number = this.webPanelForm.get("numPages")?.value;
-    // const numLanguages: number = this.webPanelForm.get("numLanguages")?.value;
-    // const webPanelPrice = this.webPanelService.calculateWebPanel(numPages, numLanguages);
-
-    // this.addPanelPrice.emit(webPanelPrice)
-    // console.log(webPanelPrice)
+    this.panelPrice();
   }
   panelPrice() {
+    // Captar valores del formulario para enviar a calcular al servicio
     let numPages: number = this.webPanelForm.get("numPages")?.value;
     let numLanguages: number = this.webPanelForm.get("numLanguages")?.value;
+    // Enviar a calcular al servicio
     let webPanelPrice = this.webPanelService.calculateWebPanel(numPages, numLanguages);
+    // Enivar al componente padre
     this.addPanelPrice.emit(webPanelPrice);
   }
 
@@ -82,5 +76,16 @@ export class PanelComponent implements OnInit {
     };
     this.panelPrice();
   }
+
+  // Exercici 5
+  // @ViewChild(ModalComponent) modal: ModalComponent;
+
+  // openWindow1() {
+  //   this.modal.openWindow1();
+  // }
+
+  // openWindow2() {
+  //   this.modal.openWindow2();
+  // }
 
 }

@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
   public generalPrice: number = 0;
   public webPanelPrice: number = 0;
   public totalBudgetPrice: number = 0;
-
   budgetForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private calculateService: CalculateBudgetService) {
