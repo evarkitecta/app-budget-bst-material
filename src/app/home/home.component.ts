@@ -15,11 +15,13 @@ export class HomeComponent implements OnInit {
   public totalBudgetPrice: number = 0;
   budgetForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private calculateService: CalculateBudgetService) {
+  constructor(private formBuilder: FormBuilder, private budgetService: CalculateBudgetService) {
     this.budgetForm = this.formBuilder.group({
       webChecked: [false],
       seoChecked: [false],
       googleAdsChecked: [false],
+      budgetName: ["", Validators.required],
+      customer: ["", Validators.required]
     });
   }
   ngOnInit(): void {
@@ -30,13 +32,13 @@ export class HomeComponent implements OnInit {
     this.generalPrice = 0;
 
     if (this.budgetForm.value.webChecked) {
-      this.generalPrice += this.calculateService.priceWeb;
+      this.generalPrice += this.budgetService.priceWeb;
     }
     if (this.budgetForm.value.seoChecked) {
-      this.generalPrice += this.calculateService.priceSEO;
+      this.generalPrice += this.budgetService.priceSEO;
     }
     if (this.budgetForm.value.googleAdsChecked) {
-      this.generalPrice += this.calculateService.priceGoogleAds;
+      this.generalPrice += this.budgetService.priceGoogleAds;
     }
     return this.generalPrice
   }
@@ -47,6 +49,27 @@ export class HomeComponent implements OnInit {
   }
 
   calculateBudget(): void {
-    this.totalBudgetPrice = this.addPrice() + this.webPanelPrice
+    if (this.budgetForm.get('webChecked')?.value) {
+      this.totalBudgetPrice = this.addPrice() + this.webPanelPrice
+    } else {
+      this.totalBudgetPrice = this.addPrice()
+    }
+  }
+  addBudgetList() {
+    //console.log('hola desde agregarPresupuesto');
+    const name = this.budgetForm.get('budgetName')!.value;
+    const customer = this.budgetForm.get('customer')!.value;
+    const price = this.totalBudgetPrice;
+
+    this.budgetService.addBudget(name, customer, price);
+    //Resetear los valores del formulario
+    this.budgetForm.reset();
+
+    this.totalBudgetPrice = 0
+    this.webPanelPrice = 0
+
+
+    // console.log('agregarPresupuesto '+ this.totalFinalPrice)
   }
 }
+

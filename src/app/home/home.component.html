@@ -1,25 +1,53 @@
  <div class="row">
-   <form [formGroup]="budgetForm" class="col col-md-6">
-     <h3 class="text-center my-5">{{title | uppercase}} </h3>
-     <div class="form-check">
-       <input type="checkbox" class="form-check-input" id="checkWeb" formControlName="webChecked"
-         (change)="calculateBudget()">
-       <label for="checkWeb" class="form-check-label">Hacer una página web (500€)</label>
+   <div class="col col-md-6">
+     <form [formGroup]="budgetForm">
+       <h3 class="text-center my-5">{{title | uppercase}} </h3>
+       <div class="form-check">
+         <input type="checkbox" class="form-check-input" id="checkWeb" formControlName="webChecked"
+           (change)="calculateBudget()">
+         <label for="checkWeb" class="form-check-label">Hacer una página web (530€)</label>
+       </div>
+       <app-panel *ngIf="budgetForm?.get('webChecked')?.value" (addPanelPrice)="receivePanelPrice($event); ">
+       </app-panel>
+       <!-- <p class="text-primary">Dato recibido del componente panel (hijo) {{webPanelPrice}} €</p> -->
+       <div class="form-check">
+         <input type="checkbox" class="form-check-input" id="checkSEO" formControlName="seoChecked"
+           (change)="calculateBudget()">
+         <label for="checkSEO" class="form-check-label">Una consultoria SEO (300€)</label>
+       </div>
+       <div class="form-check">
+         <input type="checkbox" class="form-check-input" id="checkGoogleAds" formControlName="googleAdsChecked"
+           (change)="calculateBudget()">
+         <label for="checkGoogleAds" class="form-check-label">Una campaña de Google Ads (200€)</label>
+       </div>
+       <p class=" mt-3">Total presupuesto: {{totalBudgetPrice}}€</p>
+       <!-- ****************************** -->
+       <!-- *Exercici 6: Inputs formulari -->
+       <!-- ****************************** -->
+       <div class="details-section">
+         <div>
+           <label for="budgetName">Nombre de presupuesto:</label>
+           <input type="text" id="budgetName" formControlName="budgetName" class="form-control" />
+         </div>
+         <div>
+           <label for="customer">Cliente:</label>
+           <input type="text" id="customer" formControlName="customer" class="form-control" />
+         </div>
+       </div>
+       <br />
+       <!-- acaban los inputs -->
+       <div class="d-flex justify-content-center align-items-center">
+         <button class="btn btn-primary" type="submit" [disabled]="budgetForm.invalid" (click)="addBudgetList()">
+           Guardar
+         </button>
+       </div>
+     </form>
+     <!-- Mostrar en pantalla los valores del formulario en formato JSON -->
+     <pre class="mb-3 text-danger"> {{budgetForm.value | json}}</pre>
+   </div>
+   <div class="col col-md-6 text-center bg-primary my-4 rounded">
+     <div class="mt-4 text-center">
+       <app-budget-list></app-budget-list>
      </div>
-     <app-panel *ngIf="budgetForm?.get('webChecked')?.value"
-       (addPanelPrice)="receivePanelPrice($event); calculateBudget()"></app-panel>
-     <p>Dato recibido del hijo {{webPanelPrice}} €</p>
-     <div class="form-check">
-       <input type="checkbox" class="form-check-input" id="checkSEO" formControlName="seoChecked"
-         (change)="calculateBudget()">
-       <label for="checkSEO" class="form-check-label">Una consultoria SEO (300€)</label>
-     </div>
-     <div class="form-check">
-       <input type="checkbox" class="form-check-input" id="checkGoogleAds" formControlName="googleAdsChecked"
-         (change)="calculateBudget()">
-       <label for="checkGoogleAds" class="form-check-label">Una campaña de Google Ads (200€)</label>
-     </div>
-     <p class=" mt-3">Total presupuesto: {{totalBudgetPrice}}€</p>
-   </form>
-   <!-- Mostrar en pantalla los valores del formulario en formato JSON -->
-   <div class="mb-3 text-danger"> {{budgetForm.value | json}}</div>
+   </div>
+ </div>

@@ -18,7 +18,7 @@ export class PanelComponent implements OnInit {
     //Formulario
     this.webPanelForm = this.fb.group({
       numPages: [1],
-      numLanguages: [1],
+      numLanguages: [1]
     });
     this.panelPrice();
     // this.webPanelForm.valueChanges.subscribe(() => {

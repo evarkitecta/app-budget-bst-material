@@ -19,20 +19,24 @@
 
 <div class="m-3 p-2 border rounded-2 border-3 border-dark text-center">
   <form [formGroup]="webPanelForm">
-    <div class=" form-group">
+    <div class=" form-group d-flex flex-wrap justify-content-center align-items-center">
       <label for="numPages" class="col-form-label me-2">Número de páginas: </label>
-      <button type="button" class=" rounded btn btn-outline-secondary" (click)="reduceNumPages()"> - </button>
-      <input type="number" class="text-center" formControlName="numPages" placeholder="Introduce el número de páginas"
-        (change)="panelPrice()">
-      <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumPages()"> + </button>
-      <!-- <button type="button" (click)="openWindow1()" class="p-0 m-0 border-0 align-bottom bg-white rounded ms-2"><i
+      <div class="d-flex justify-content-center align-items-center">
+        <button type="button" class=" rounded btn btn-outline-secondary" (click)="reduceNumPages()"> - </button>
+        <input type="number" class="text-center" placeholder="Introduce número > 0"
+          aria-label="Escribe el número de páginas" formControlName="numPages" (change)="panelPrice()">
+        <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumPages()"> + </button>
+
+        <!-- <button type="button" (click)="openWindow1()" class="p-0 m-0 border-0 align-bottom bg-white rounded ms-2"><i
         class="fa-sharp fa-solid fa-circle-info text-muted"></i></button> -->
-      <app-modal></app-modal>
+        <app-modal></app-modal>
+      </div>
     </div>
     <div class="form-group">
       <label for="numLanguages" class="col-form-label me-2">Número de idiomas: </label>
       <button type="button" class=" rounded btn btn-outline-secondary" (click)="reduceNumLanguages()"> - </button>
-      <input type="number" class="text-center" formControlName="numLanguages" (change)="panelPrice()">
+      <input type="number" class="text-center" placeholder="Introduce número > 0"
+        aria-label="Escribe el número de idiomas" formControlName="numLanguages" (change)="panelPrice()">
       <button type="button" class=" rounded btn btn-outline-secondary" (click)="increaseNumLanguages()"> + </button>
     </div>
     <!-- <button type="button" (click)="openWindow2()" class="p-0 m-0 border-0 align-bottom bg-white rounded ms-2"><i
@@ -41,4 +45,4 @@
   <!-- <button (click)="calculatePrice()">Calcular precio</button> -->
 </div>
 <!-- Mostrar en pantalla los valores del formulario en formato JSON -->
-<div class="mb-3 text-primary"> {{webPanelForm.value | json}}</div>
+<pre class="mb-3 text-primary"> {{webPanelForm.value | json}}</pre>

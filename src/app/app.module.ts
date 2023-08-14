@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
+import { BudgetListComponent } from './budget-list/budget-list.component';
 import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
 import { WellcomeComponent } from './wellcome/wellcome.component';
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
+    BudgetListComponent,
     HomeComponent,
     ModalComponent,
     PanelComponent,
