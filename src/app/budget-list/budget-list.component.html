@@ -1,16 +1,26 @@
 <h3>Listado de presupuestos</h3>
+<!-- ********************************** -->
+<!-- *Ejercicio 7: Botones de filtrado -->
+<!-- ********************************** -->
+<div class="d-flex flex-column ">
+  <button class="btn btn-primary mb-2" (click)="sortByName()">Ordenar presupuestos por nombre</button>
+  <button class="btn btn-primary mb-2" (click)="sortByCustomer()">Ordenar presupuestos por cliente</button>
+  <button class="btn btn-primary mb-2" (click)="sortByDate()">Ordenar presupuestos por fecha</button>
+</div>
+<!-- ********************************************* -->
+<!-- *Ejercicio 6: Mostrar listado de presupuestos -->
+<!-- ********************************************* -->
 <div class="budget-list">
   <ul class="list-unstyled">
-    <li *ngFor="let budget of budgets">
+    <li *ngFor="let budget of budgets" class="border rounded mb-2">
       <i>Nombre Presupuesto: </i> <b>{{ budget.budgetName }}</b>
       <br>
-      <i>Cliente: </i> <b>{{ budget.client }}</b>
+      <i>Cliente: </i> <b>{{ budget.customer}}</b>
       <br>
       <i>Precio: </i> <b>{{ budget.price }}€</b>
       <br>
-      <!-- Fecha de Creación: -->
-      <!-- {{ budget.date | date : "dd/MM/yyyy HH:mm:ss" }} -->
-      <hr>
+      <i>Fecha:</i>
+      <b>{{ budget.date | date : "dd/MM/yyyy HH:mm:ss" }}</b>
     </li>
   </ul>
 </div>

@@ -1,5 +1,6 @@
 export interface Budget {
   budgetName: string;
-  client: string;
+  customer: string;
   price: number;
+  date: Date;
 }

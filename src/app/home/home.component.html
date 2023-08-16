@@ -21,9 +21,9 @@
          <label for="checkGoogleAds" class="form-check-label">Una campaña de Google Ads (200€)</label>
        </div>
        <p class=" mt-3">Total presupuesto: {{totalBudgetPrice}}€</p>
-       <!-- ****************************** -->
-       <!-- *Exercici 6: Inputs formulari -->
-       <!-- ****************************** -->
+       <!-- ******************************************* -->
+       <!-- *Exercici 6: Inputs formulari  -->
+       <!-- ******************************************* -->
        <div class="details-section">
          <div>
            <label for="budgetName">Nombre de presupuesto:</label>
@@ -41,11 +41,16 @@
            Guardar
          </button>
        </div>
+       <div class="my-3 text-danger">Formulario Validado: {{budgetForm.valid | json}}</div>
      </form>
      <!-- Mostrar en pantalla los valores del formulario en formato JSON -->
      <pre class="mb-3 text-danger"> {{budgetForm.value | json}}</pre>
    </div>
-   <div class="col col-md-6 text-center bg-primary my-4 rounded">
+   <!-- Componente budget-list -->
+   <!-- ******************************************* -->
+   <!-- *Exercici 6: Componente budget-list.  -->
+   <!-- ******************************************* -->
+   <div class="col col-md-6 text-center bg-light my-4 rounded">
      <div class="mt-4 text-center">
        <app-budget-list></app-budget-list>
      </div>

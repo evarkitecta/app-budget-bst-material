@@ -17,20 +17,22 @@ export class CalculateBudgetService {
 
   // Exercici 6
   public budgetsList: Budget[] = [];
-  budget$ = new Subject<any>
+  // budget$ = new Subject<any>
 
   addBudget(name: string, customer: string, price: number): void {
     const budget: Budget = {
       budgetName: name,
-      client: customer,
-      price: price
+      customer: customer,
+      price: price,
+      date: new Date()
     }
     this.budgetsList.push(budget);
-    this.budget$.next(this.budgetsList)
+    // this.budget$.next(this.budgetsList)
     console.log(this.budgetsList)
   }
 
   // getBudgetsList() {
   //   return this.budgetsList;
   // }
+
 }
