@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit {
     this.totalBudgetPrice = 0
     this.webPanelPrice = 0
 
-
     // console.log('agregarPresupuesto '+ this.totalFinalPrice)
   }
 }

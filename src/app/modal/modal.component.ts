@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,21 +10,23 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent {
 
-  // @ViewChild("modal1", { static: false }) modal1: TemplateRef<any>;
-  // @ViewChild("modal2", { static: false }) modal2: TemplateRef<any>;
+  @ViewChild("modal1", { static: false })
+  modal1!: TemplateRef<any>;
+  @ViewChild("modal2", { static: false })
+  modal2!: TemplateRef<any>;
 
 
   constructor(private modalService: NgbModal) { }
 
-  openVerticallyCentered(content: any) {
-    this.modalService.open(content, { centered: true });
+  // openVerticallyCentered(content: any) {
+  //   this.modalService.open(content, { centered: true });
+  // }
+
+  openWindow1() {
+    this.modalService.open(this.modal1, { centered: true });
   }
 
-  // openWindow1() {
-  //   this.modalService.open(this.modal1);
-  // }
-
-  // openWindow2() {
-  //   this.modalService.open(this.modal2);
-  // }
+  openWindow2() {
+    this.modalService.open(this.modal2, { centered: true });
+  }
 }

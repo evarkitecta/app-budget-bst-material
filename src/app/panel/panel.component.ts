@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CalculateBudgetService } from '../shared/services/calculate-budget.service';
 import { ModalComponent } from '../modal/modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-panel',
@@ -14,7 +15,7 @@ export class PanelComponent implements OnInit {
   // Formulario del panel opción web
   webPanelForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private webPanelService: CalculateBudgetService) {
+  constructor(private fb: FormBuilder, private webPanelService: CalculateBudgetService, private modalService: NgbModal) {
     //Formulario
     this.webPanelForm = this.fb.group({
       numPages: [1],
@@ -78,14 +79,14 @@ export class PanelComponent implements OnInit {
   }
 
   // Exercici 5
-  // @ViewChild(ModalComponent) modal: ModalComponent;
+  @ViewChild(ModalComponent) modal!: ModalComponent;
 
-  // openWindow1() {
-  //   this.modal.openWindow1();
-  // }
+  openWindow1() {
+    this.modal.openWindow1();
+  }
 
-  // openWindow2() {
-  //   this.modal.openWindow2();
-  // }
+  openWindow2() {
+    this.modal.openWindow2();
+  }
 
 }

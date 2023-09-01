@@ -1,11 +1,16 @@
 <h3>Listado de presupuestos</h3>
+<div class="d-flex">
+  <input [(ngModel)]="searchingWord" type="text" placeholder="Buscar presupuesto por nombre"
+    class="form-control mb-2" />
+  <button class="btn btn-primary mb-2 ms-2" (clic)="resetOrder()">Reiniciar</button>
+</div>
 <!-- ********************************** -->
 <!-- *Ejercicio 7: Botones de filtrado -->
 <!-- ********************************** -->
 <div class="d-flex flex-column ">
-  <button class="btn btn-primary mb-2" (click)="sortByName()">Ordenar presupuestos por nombre</button>
-  <button class="btn btn-primary mb-2" (click)="sortByCustomer()">Ordenar presupuestos por cliente</button>
-  <button class="btn btn-primary mb-2" (click)="sortByDate()">Ordenar presupuestos por fecha</button>
+  <button class="btn btn-primary mb-2" (click)="sortByName()">Ordenar por nombre</button>
+  <button class="btn btn-primary mb-2" (click)="sortByCustomer()">Ordenar por cliente</button>
+  <button class="btn btn-primary mb-2" (click)="sortByDate()">Ordenar por fecha</button>
 </div>
 <!-- ********************************************* -->
 <!-- *Ejercicio 6: Mostrar listado de presupuestos -->

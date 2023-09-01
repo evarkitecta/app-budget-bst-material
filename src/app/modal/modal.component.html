@@ -1,41 +1,25 @@
-<ng-template #content let-modal>
+<ng-template #modal1 let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Información</h4>
+    <h4 class="modal-title">Información número de páginas</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
-    <p>Aquí mostraré el mensaje: message</p>
+    Indicar el número de páginas en este recuadro. <br> Introducir como mínimo 1 página.
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
-  </div>
-</ng-template>
-
-<!-- Mirar de añadir un condicional para poder mostrar un mensaje u otro -->
-<a type="button" class="ms-3" (click)="openVerticallyCentered(content)">
-  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="red" class="bi bi-info-circle-fill"
-    viewBox="0 0 16 16">
-    <path
-      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
-    </path>
-  </svg>
-</a>
-
-
-<!-- <ng-template #modal1 let-modal>
-  <div class="modal-body">
-    En aquest requadre ha d'indicar el nombre de pàgines que desitja per al seu lloc web.
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="modal.close()">Entesos</button>
+    <button type="button" class="btn btn-success" (click)="modal.close()">Cerrar</button>
   </div>
 </ng-template>
 
 <ng-template #modal2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Información número de idiomas</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
   <div class="modal-body">
-    En aquest requadre ha d'indicar el nombre d'idiomes amb els quals vol la seva pàgina web.
+    Indicar el número de páginas en este recuadro. <br> Introducir como mínimo 1 idioma
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="modal.close()">Entesos</button>
+    <button type="button" class="btn btn-success" (click)="modal.close()">Cerrar</button>
   </div>
-</ng-template> -->
+</ng-template>

@@ -1,0 +1,32 @@
+.container-panel{
+  height:auto;
+  /* background-color: rgb(218, 220, 228) */
+}
+
+.group-buttons-input {
+  height: 2rem;
+  /* text-align: center; */
+}
+
+.group-buttons-input input{
+  -moz-appearance: textfield; /*Quitar flechas * Firefox */
+  appearance: none; /* Quitar flechas Safari, * Chrome */
+  height: 100%;
+  width: 4rem;
+  border-color: primary;
+}
+
+.group-buttons-input input::-webkit-inner-spin-button,
+.group-buttons-input input::-webkit-outer-spin-button {
+  -webkit-appearance: none; /*Quitar flechas  * Safari, Chrome */
+  margin: 0;
+}
+
+.group-buttons-input button{
+  height: 100%;
+  line-height: 100%;
+  color: white;
+  width: 2rem;
+  text-align: center;
+}
+

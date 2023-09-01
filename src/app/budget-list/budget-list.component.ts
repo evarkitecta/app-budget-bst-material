@@ -9,6 +9,8 @@ import { Budget } from '../shared/interfaces/budget.interface';
 })
 export class BudgetListComponent implements OnInit {
   public budgets: Budget[] = [];
+  // public budgetsCopy: Budget[] = [...this.budgets];
+  public searchingWord: string = "";
   public filteredBudgets: Budget[] = [];
   // public sortedByName: Boolean = false;
   // public sortedByDate: Boolean = false;
@@ -20,6 +22,7 @@ export class BudgetListComponent implements OnInit {
     // this.budgetService.budget$.subscribe((resp) => {
     //   this.budgets = [...resp];
     // });
+    // console.log("budgetsCopy", this.budgetsCopy)
   }
 
   sortByName() {
@@ -74,5 +77,31 @@ export class BudgetListComponent implements OnInit {
     // this.sortedByName = false;
   }
 
+  // *A partir de aquí revisar porque no funciona correctamente
+  refresh() {
+    this.budgets = this.budgetService.budgetsList;
+  }
+  resetOrder(): void {
+    //set nunca retorna solo resetea
+    this.budgets = [...this.budgetService.budgets];
+    console.log('__budgets', this.budgets);
+    console.log('__servicio', this.budgetService.budgets);
+    // this.orderByDate = false;
+    // this.orderByAlphabet = false;
+  }
+
+  searchBudget() {
+    console.log('___Presupuestos filtrados: ', this.filteredBudgets);
+    if (this.searchingWord.trim() === '') {
+      this.filteredBudgets = this.budgets;
+    } else {
+      this.filteredBudgets = this.budgets.filter((budget) =>
+        budget.budgetName.toLowerCase().includes(this.searchingWord.toLowerCase())
+      );
+    }
+    if (this.filteredBudgets.length === 0) {
+      alert('not found');
+    }
+  }
 
 }
