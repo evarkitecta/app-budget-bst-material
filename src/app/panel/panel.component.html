@@ -1,18 +1,15 @@
 <div class="container-panel m-3 p-2 border rounded-2 border-3 border-primary text-center bg-light">
   <form [formGroup]="webPanelForm" class="py-3">
-    <div class="mb-3 form-group d-flex flex-wrap justify-content-center align-items-center ">
+
+    <div class="form-group d-flex flex-wrap justify-content-center align-items-center ">
       <label for="numPages" class="col-form-label me-2 ">Número de páginas: </label>
-
       <div class="d-flex justify-content-center align-items-center group-buttons-input fw-bolder">
-
         <button type="button" class="border-0 bg-primary rounded-start fs-3" (click)="reduceNumPages()">
           -
         </button>
-
         <input type="number" class="text-center  border-0 border-top border-bottom border-primary"
           placeholder="Introduce número > 0" aria-label="Escribe el número de páginas" formControlName="numPages"
           (change)="panelPrice()">
-
         <button type="button" class="border-0 bg-primary rounded-end fs-3" (click)="increaseNumPages()"> +
         </button>
         <!-- info pages button -->
@@ -24,10 +21,14 @@
             </path>
           </svg>
         </button>
-
         <app-modal></app-modal>
       </div>
+
     </div>
+    <div class="text-danger mb-3" *ngIf="webPanelForm.get('numPages')?.hasError('minValue')">
+      <p>El valor ha de ser mayor o igual a 1.</p>
+    </div>
+
     <div class="form-group d-flex flex-wrap justify-content-center align-items-center">
       <label for="numLanguages" class="col-form-label me-2">Número de idiomas: </label>
       <div class="d-flex justify-content-center align-items-center group-buttons-input">
@@ -53,9 +54,11 @@
       </button>
       <app-modal></app-modal>
     </div>
+    <div class="text-danger" *ngIf="webPanelForm.get('numLanguages')?.hasError('minValue')">
+      <p>El valor ha de ser mayor o igual a 1.</p>
+    </div>
   </form>
 
-  <!-- <button (click)="calculatePrice()">Calcular precio</button> -->
 </div>
 <!-- Mostrar en pantalla los valores del formulario en formato JSON -->
 <pre class="mb-3 text-primary"> {{webPanelForm.value | json}}</pre>

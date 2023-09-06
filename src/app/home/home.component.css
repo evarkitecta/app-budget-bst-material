@@ -1,3 +1,10 @@
 .container-budget-list{
   background-color: rgb(218, 220, 228)
 }
+
+a:hover{
+ color: red;
+ font-weight: 500;
+}
+
+

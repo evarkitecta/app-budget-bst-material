@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -37,10 +36,8 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
-    MaterialModule,
     NgbModule,
     ReactiveFormsModule,
-
   ]
 })
 export class AppModule { }

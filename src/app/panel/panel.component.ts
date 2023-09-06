@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CalculateBudgetService } from '../shared/services/calculate-budget.service';
 import { ModalComponent } from '../modal/modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,9 +7,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
-  styleUrls: ['./panel.component.css']
+  styleUrls: ['./panel.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent implements OnInit, AfterViewInit {
   @Output() public addPanelPrice = new EventEmitter<number>();
 
   // Formulario del panel opción web
@@ -18,22 +19,22 @@ export class PanelComponent implements OnInit {
   constructor(private fb: FormBuilder, private webPanelService: CalculateBudgetService, private modalService: NgbModal) {
     //Formulario
     this.webPanelForm = this.fb.group({
-      numPages: [1],
-      numLanguages: [1]
+      numPages: [0, [this.minimumValueValidator]],
+      numLanguages: [0, [this.minimumValueValidator]]
     });
     this.panelPrice();
-    // this.webPanelForm.valueChanges.subscribe(() => {
-    //   this.panelPrice();
-    // });
-    // this.webPanelForm.valueChanges.subscribe(() => {
-    //   const webPanelPrice = this.webPanelService.calculateWebPanel(this.webPanelForm.value.numPages, this.webPanelForm.value.numLanguages);
-    //   this.addPanelPrice.emit(webPanelPrice);
-    // });
+
+  }
+  minimumValueValidator(control: FormControl) {
+    const value = control.value;
+    return value >= 1 ? null : { minValue: true };
+  }
+  ngAfterViewInit(): void {
+    this.panelPrice();
 
   }
   ngOnInit(): void {
 
-    this.panelPrice();
   }
   panelPrice() {
     // Captar valores del formulario para enviar a calcular al servicio
@@ -41,13 +42,15 @@ export class PanelComponent implements OnInit {
     let numLanguages: number = this.webPanelForm.get("numLanguages")?.value;
     // Enviar a calcular al servicio
     let webPanelPrice = this.webPanelService.calculateWebPanel(numPages, numLanguages);
-    // Enivar al componente padre
+    // Enviar al componente padre
     this.addPanelPrice.emit(webPanelPrice);
+
   }
 
   // Exercici 3
   increaseNumPages() {
     let numPages = this.webPanelForm.get('numPages')?.value;
+    // Actualizar el valor del campo del formulario con setValue
     this.webPanelForm.get('numPages')?.setValue(++numPages);
     this.panelPrice();
   }
@@ -62,13 +65,11 @@ export class PanelComponent implements OnInit {
     this.panelPrice();
   }
 
-
   increaseNumLanguages() {
     let numLanguages = this.webPanelForm.get('numLanguages')?.value;
     this.webPanelForm.get('numLanguages')?.setValue(++numLanguages);
     this.panelPrice();
   }
-
 
   reduceNumLanguages() {
     let numLanguages = this.webPanelForm.get('numLanguages')?.value;

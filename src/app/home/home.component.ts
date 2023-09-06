@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CalculateBudgetService } from '../shared/services/calculate-budget.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  title = '¿Qué quieres hacer?';
+export class HomeComponent {
+  title = 'Crear presupuesto';
 
   public generalPrice: number = 0;
   public webPanelPrice: number = 0;
   public totalBudgetPrice: number = 0;
   budgetForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private budgetService: CalculateBudgetService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private budgetService: CalculateBudgetService) {
     this.budgetForm = this.formBuilder.group({
       webChecked: [false],
       seoChecked: [false],
@@ -23,9 +24,6 @@ export class HomeComponent implements OnInit {
       budgetName: ["", Validators.required],
       customer: ["", Validators.required]
     });
-  }
-  ngOnInit(): void {
-
   }
 
   addPrice(): number {
@@ -56,7 +54,6 @@ export class HomeComponent implements OnInit {
     }
   }
   addBudgetList() {
-    //console.log('hola desde agregarPresupuesto');
     const name = this.budgetForm.get('budgetName')!.value;
     const customer = this.budgetForm.get('customer')!.value;
     const price = this.totalBudgetPrice;
@@ -67,8 +64,10 @@ export class HomeComponent implements OnInit {
 
     this.totalBudgetPrice = 0
     this.webPanelPrice = 0
+  }
 
-    // console.log('agregarPresupuesto '+ this.totalFinalPrice)
+  goBack(): void {
+    this.router.navigate(['']);
   }
 }
 
